@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import ChatContainer from './components/ChatContainer'
 import Prompt from './components/prompt'
@@ -15,8 +15,7 @@ function App() {
         value: messageText,
         uniqueID: generateID()
     }
-
-    setMessages([...messages, newMessage])
+    setMessages(prevMessages => [...prevMessages, newMessage]);
   }
 
   const handleChange = (e) => {
@@ -24,18 +23,50 @@ function App() {
     setPrompt(e.target.value);
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     addMessage(false, prompt)
+
     setPrompt("")
+
+    const responseData = await postData(prompt)
+    if (responseData && responseData.bot) {
+      addMessage(true, responseData.bot)// Add bot's response as a new message
+    }
     
   }
 
+  useEffect(() => {
+    console.log(messages)
+  }, [messages])
 
+  async function postData(input) {
+    try {
+      const response = await fetch('http://localhost:3000', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          prompt: input
+        })
+      });
+  
+      if (!response.ok) {
+        // check if response status code is not OK (e.g., 404, 500, etc.)
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+  
+      return await response.json();
+    } catch (error) {
+      console.error('Error:', error);
+      // Handle or rethrow the error as needed
+    }
+  }
 
   return (
     <div>
-      <ChatContainer messages={messages}/>
+      <ChatContainer chat_messages={messages}/>
       <Prompt handleSubmit={handleSubmit} handleChange={handleChange} value={prompt}/>
     </div>
   )

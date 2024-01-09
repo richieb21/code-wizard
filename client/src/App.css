@@ -60,8 +60,7 @@ body {
 
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
   gap: 10px;
 }
 
@@ -114,6 +113,10 @@ body {
 }
 
 form {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
@@ -148,4 +151,9 @@ button {
 form img {
   width: 30px;
   height: 30px;
+}
+
+.chat-container {
+  overflow-y: auto;
+  height: 90vh;
 }
