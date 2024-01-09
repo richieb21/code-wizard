@@ -2,10 +2,10 @@ import React from 'react'
 import bot from '../assets/bot.svg'
 import user from '../assets/user.svg'
 
-const ChatStripe = ({isAi, value, uniqueID}) => {
-
+const ChatStripe = ({isAi, value, uniqueID, color}) => {
+  
   return (
-    <div className='wrapper'>
+    <div className={'wrapper ' + color}>
         <div className='chat'>
             <div className='profile'>
                 <img src={isAi ? bot : user} alt={isAi ? "bot" : "user"}/>

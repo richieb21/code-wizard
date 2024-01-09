@@ -8,6 +8,7 @@ function App() {
   
   const [messages, setMessages] = useState([]);
   const [prompt, setPrompt] = useState("");
+  const [isTyping, setIsTyping] = useState(false);
 
   const addMessage = (isAi, messageText) => {
     const newMessage = {
@@ -16,6 +17,10 @@ function App() {
         uniqueID: generateID()
     }
     setMessages(prevMessages => [...prevMessages, newMessage]);
+  }
+
+  const removeMessage= () => {
+    setMessages(messages.slice(0, -1))
   }
 
   const handleChange = (e) => {
@@ -28,17 +33,15 @@ function App() {
     addMessage(false, prompt)
 
     setPrompt("")
+    setIsTyping(true)
 
     const responseData = await postData(prompt)
     if (responseData && responseData.bot) {
       addMessage(true, responseData.bot)// Add bot's response as a new message
     }
-    
-  }
 
-  useEffect(() => {
-    console.log(messages)
-  }, [messages])
+    setIsTyping(false)
+  }
 
   async function postData(input) {
     try {
@@ -65,8 +68,8 @@ function App() {
   }
 
   return (
-    <div>
-      <ChatContainer chat_messages={messages}/>
+    <div className='app'>
+      <ChatContainer chat_messages={messages} isTyping={isTyping}/>
       <Prompt handleSubmit={handleSubmit} handleChange={handleChange} value={prompt}/>
     </div>
   )

@@ -47,6 +47,7 @@ body {
 .wrapper {
   width: 100%;
   padding: 15px;
+  border-radius: 15px;
 }
 
 .ai {
@@ -156,4 +157,16 @@ form img {
 .chat-container {
   overflow-y: auto;
   height: 90vh;
+  width: 100%;
+  max-width: 1280px;
+}
+
+.app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ai-stripe {
+  background-color: #67677d;
 }
