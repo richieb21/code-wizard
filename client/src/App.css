@@ -129,6 +129,8 @@ form {
   gap: 10px;
   margin-bottom: 10px;
   border-radius: 30px;
+
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), -4px 0 6px rgba(0, 0, 0, 0.2);
 }
 
 textarea {
@@ -198,4 +200,11 @@ form img {
   align-items: center;
   justify-content: center;
   width: 40px;
+}
+
+pre {
+  border-radius: 15px;
+  margin-left: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), -4px 0 6px rgba(0, 0, 0, 0.2);
+  width: 1000px;
 }
