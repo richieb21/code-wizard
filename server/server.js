@@ -22,12 +22,11 @@ app.get("/", async (req, res) => {
 app.post("/", async (req, res) => {
     try {
         const prompt = req.body.prompt;
+        
+        console.log(prompt)
 
         const response = await openai.chat.completions.create({
-            messages: [
-              { "role": "system", "content": "You are an expert in coding and programming and are giving advice for code related questions" },
-              { "role": "user", "content": `${prompt}`}
-            ],
+            messages: prompt,
             model: "gpt-3.5-turbo",
           });
 

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Prompt = ({ handleSubmit, handleChange, value }) => {
+const Prompt = ({ handleSubmit, handleChange, value, isTyping }) => {
   return (
     <form>
         <textarea 
@@ -10,8 +10,8 @@ const Prompt = ({ handleSubmit, handleChange, value }) => {
             onChange={handleChange}
             value={value}
         ></textarea>
-        <button type='submit' onClick={handleSubmit}>
-            <img src='./src/assets/send.svg'/>
+        <button className='submit-button' type='submit' onClick={handleSubmit}>
+            <img className='prompt-button' src={isTyping ? './src/assets/align-justify.svg' : './src/assets/send.svg'}/>
         </button>
     </form>
   )
