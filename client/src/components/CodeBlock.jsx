@@ -11,7 +11,7 @@ const CodeBlock = ({ content }) => {
           {segments.map((segment, index) => {
               if (segment.type === 'code') {
                   return (
-                      <div className="code-block">
+                      <div key={index} className="code-block">
                         <SyntaxHighlighter key={index} language={segment.language} style={atomOneDark}>
                             {segment.content}
                         </SyntaxHighlighter>

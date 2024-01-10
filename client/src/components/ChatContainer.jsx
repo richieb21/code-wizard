@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
-
 import ChatStripe from './ChatStripe';
-import CodeBlock from './CodeBlock';
 
 const ChatContainer = ({ chat_messages, isTyping }) => {
 
