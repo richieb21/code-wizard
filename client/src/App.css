@@ -105,11 +105,8 @@ body {
 }
 
 form {
-  position: absolute;
   bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
+  width: 80%;
   max-width: 1280px;
   margin: 0 auto;
   padding: 10px;
@@ -119,7 +116,7 @@ form {
   flex-direction: row;
   gap: 10px;
   margin-bottom: 10px;
-  border-radius: 30px;
+  border-radius: 15px;
 
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), -4px 0 6px rgba(0, 0, 0, 0.2);
 }
@@ -151,9 +148,11 @@ form img {
 }
 
 .chat-container {
+  position: relative;
+  left: 10px;
   overflow-y: auto;
-  height: 85vh;
-  width: 100%;
+  height: 80vh;
+  width: calc(80% + 20px);
   max-width: 1280px;
   padding-right: 20px;
 
@@ -162,10 +161,10 @@ form img {
 
 .app {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
 
+  height: 100vh;
+  gap: 20px;
   font-size: 15px;
 }
 
@@ -209,12 +208,10 @@ pre {
   align-items: flex-start;
 
   height: 50px;
-  width: 1280px;
+  width: 80%;
 
-  background-color: #40414F;
+  background-color: #343541;
   color: #dcdcdc;
-
-  font-size: 15px;
 
   border-bottom-left-radius: 10px;  /* Replace with the desired radius */
   border-bottom-right-radius: 10px; /* Replace with the desired radius */
@@ -222,4 +219,51 @@ pre {
 
 .header-content {
   margin-left: 10px;
+  font-size: 30px;
+  font-weight: 200;
+}
+
+.history-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+
+  background-color: #000000;
+
+  width: 15vw;
+  height: 100vh;
+}
+
+.text {
+  white-space: nowrap;
+  overflow: hidden;
+  direction: ltr;
+  text-align: left;
+  text-overflow: ellipsis;
+
+  margin-left: 8px;
+
+  font-size: 14px;
+  color: white;
+  font-weight: 100;
+}
+
+.conversation-container {
+  width: 85vw;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.history-block {
+  cursor: pointer;
+  padding: 10px 5px 10px;
+  width: 90%;
+}
+
+.logo {
+  color:#5436DA;
+  margin: 10px 0px 30px 10px;
 }

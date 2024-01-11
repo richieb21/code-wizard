@@ -162,6 +162,7 @@ function App() {
 
   return (
     <div className='app'>
+      <History conversations={conversations}/>
       <div className='conversation-container'>
         <Header title={title}/>
         <ChatContainer chat_messages={messages} isTyping={isTyping}/>
