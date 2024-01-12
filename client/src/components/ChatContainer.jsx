@@ -23,10 +23,10 @@ const ChatContainer = ({ chat_messages, isTyping }) => {
     return (
         <div className='chat-container'>
             {chat_messages.map((msg, index) => (
-                <ChatStripe key={index} isAi={msg.isAi} value={msg.value} uniqueID={msg.uniqueID} color={msg.isAi ? "ai-stripe": ""}/>
+                <ChatStripe key={index} isAi={msg.isAi} value={msg.value} color={msg.isAi ? "ai-stripe": ""}/>
             ))}
             
-            {isTyping && <ChatStripe isAi={true} value={typingIndicator} uniqueID={"none"} color={"ai-stripe"}/>}
+            {isTyping && <ChatStripe isAi={true} value={typingIndicator} color={"ai-stripe"}/>}
         </div>
     )
 }

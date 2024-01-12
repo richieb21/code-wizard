@@ -118,4 +118,41 @@ app.get('/conversations', async (req, res) => {
     }
 });
 
+app.delete('/conversations/:conversationID', async(req, res) => {
+    try {
+        const id = req.params.conversationID
+        console.log(id)
+
+        const result = await Conversation.findByIdAndDelete(id);
+
+        if (result) {
+            // If a document was deleted
+            res.status(200).send(`Conversation deleted successfully.`);
+        } else {
+            // If no document was found with that ID
+            res.status(404).send(`No conversation found with ID.`);
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).send(error.message);
+    }
+})
+
+app.get('/conversations/:conversationID', async(req, res) => {
+    try {
+        const conversationID = req.params.conversationID;
+        const conversation = await Conversation.findById(conversationID);
+
+        if (!conversation) {
+            return res.status(404).send('Conversation not found');
+        }
+        res.json({
+            title: conversation.title,
+            messages: conversation.messages
+        });
+    } catch (error) {
+        res.status(500).send('Server error');
+    }
+})
+
 app.listen(3000, () => console.log('Server is running on port https://localhost:3000'));

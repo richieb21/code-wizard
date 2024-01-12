@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import ChatContainer from './components/ChatContainer'
 import Prompt from './components/prompt'
-import generateID from './components/scripts'
 import Header from './components/Header'
 import History from './components/History'
 
@@ -14,15 +13,13 @@ function App() {
   const [messages, setMessages] = useState([]);
   const [prompt, setPrompt] = useState("");
   const [title, setTitle] = useState("")
-  const [currentConvo, setCurrentConvo] = useState([{ "role": "system", "content": "You are an expert in coding and programming and are giving advice for code related questions" }]);
+  const [currentConvo, setCurrentConvo] = useState([{ "role": "system", "content": "You are an expert in coding and programming and are giving advice for code related questions. If the question is unrelated to code, do not under any cirucmstances answer it." }]);
   const [convoID, setConvoID] = useState("")
-  const [conversations, setConversations] = useState([])
 
   const addMessage = (isAi, messageText) => {
     const newMessage = {
         isAi,
-        value: messageText,
-        uniqueID: generateID()
+        value: messageText
     }
     setMessages(prevMessages => [...prevMessages, newMessage]);
   }
@@ -142,27 +139,38 @@ function App() {
     }
   }
 
-  async function fetchConversations() {
-    try {
-        const response = await fetch('http://localhost:3000/conversations');
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        const conversations = await response.json();
-        setConversations(conversations); // Use the fetched conversations as needed
-    } catch (error) {
-        console.error('Fetch error:', error);
-    }
+  function translateMessages(originalMessages) {
+    return originalMessages.map(message => {
+      return {
+        isAi: message.role === "assistant",
+        value: message.content
+      };
+    }).slice(1)
   }
 
-  useEffect(() => {
-    fetchConversations()
-  },[messages])
+  function extractMessage(msg) {
+    return msg.map(obj => {
+      return {
+        role: obj.role,
+        content: obj.content
+      };
+    });
+  }
 
+  async function getID(id){
+    const response = await fetch(`http://localhost:3000/conversations/${id}`)
+    const data = await response.json()
+
+    setTitle(data.title)
+    setMessages(translateMessages(data.messages))
+    setConvoID(id)
+    setCurrentConvo(extractMessage(data.messages))
+    setFirstPrompt(true);
+  }
 
   return (
     <div className='app'>
-      <History conversations={conversations}/>
+      <History onHistoryClick={getID}/>
       <div className='conversation-container'>
         <Header title={title}/>
         <ChatContainer chat_messages={messages} isTyping={isTyping}/>

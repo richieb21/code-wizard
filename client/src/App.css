@@ -199,7 +199,7 @@ pre {
   border-radius: 15px;
   margin-left: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), -4px 0 6px rgba(0, 0, 0, 0.2);
-  width: 1000px;
+  width: 90%;
 }
 
 .header {
@@ -230,7 +230,7 @@ pre {
 
   background-color: #000000;
 
-  width: 15vw;
+  width: 18vw;
   height: 100vh;
 }
 
@@ -239,13 +239,17 @@ pre {
   overflow: hidden;
   direction: ltr;
   text-align: left;
-  text-overflow: ellipsis;
+  text-overflow: clip;
 
   margin-left: 8px;
+  width: 100%;
 
-  font-size: 14px;
+  font-size: 13px;
   color: white;
   font-weight: 100;
+
+  -webkit-mask-image: linear-gradient(to right, black 80%, transparent 100%);
+  mask-image: linear-gradient(to right, black 80%, transparent 100%);
 }
 
 .conversation-container {
@@ -258,12 +262,17 @@ pre {
 }
 
 .history-block {
+  display: flex;
+  justify-content: space-between;
+
+  gap: 5px;
+
   cursor: pointer;
   padding: 10px 5px 10px;
-  width: 90%;
+  width: 95%;
 }
 
 .logo {
   color:#5436DA;
-  margin: 10px 0px 30px 10px;
+  margin: 10px 0px 30px 25px;
 }
