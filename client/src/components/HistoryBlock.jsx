@@ -17,9 +17,11 @@ const HistoryBlock = ({ title, id, onClick }) => {
         });
       };
 
+//fix deletion bug
+
   return (
-    <div key={id} onClick={onClick} className='history-block'>
-        <h3 className='text'>{title}</h3>
+    <div key={id} className='history-block'>
+        <h3 className='text' onClick={onClick}>{title}</h3>
         <button onClick={() => deleteConversation(id)}><img src={x}></img></button>
     </div>
   )

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import './App.css'
 import ChatContainer from './components/ChatContainer'
 import Prompt from './components/prompt'
@@ -168,9 +168,17 @@ function App() {
     setFirstPrompt(true);
   }
 
+  function onClick() {
+    setTitle("")
+    setMessages([])
+    setConvoID("")
+    setCurrentConvo([{ "role": "system", "content": "You are an expert in coding and programming and are giving advice for code related questions. If the question is unrelated to code, do not under any cirucmstances answer it." }])
+    setFirstPrompt(false);
+  }
+
   return (
     <div className='app'>
-      <History onHistoryClick={getID}/>
+      <History onHistoryClick={getID} onClick={onClick}/>
       <div className='conversation-container'>
         <Header title={title}/>
         <ChatContainer chat_messages={messages} isTyping={isTyping}/>

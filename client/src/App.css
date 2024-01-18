@@ -207,7 +207,7 @@ pre {
   justify-content: center;
   align-items: flex-start;
 
-  height: 50px;
+  height: 5vh;
   width: 80%;
 
   background-color: #343541;
@@ -221,6 +221,12 @@ pre {
   margin-left: 10px;
   font-size: 30px;
   font-weight: 200;
+
+  white-space: nowrap;
+  overflow: hidden;
+  direction: ltr;
+  text-align: left;
+  text-overflow: ellipsis;
 }
 
 .history-container {
@@ -274,5 +280,11 @@ pre {
 
 .logo {
   color:#5436DA;
-  margin: 10px 0px 30px 25px;
+  margin: 10px 0px 30px 35px;
+}
+
+.new-chat {
+  font-size: 20px;
+  color: white;
+  margin-bottom: 20px;
 }

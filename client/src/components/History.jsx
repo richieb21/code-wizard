@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import HistoryBlock from './HistoryBlock';
 
-const History = ( { onHistoryClick } ) => {
+const History = ( { onHistoryClick, onClick } ) => {
 
   const [conversations, setConversations] = useState([])
 
@@ -22,11 +22,10 @@ const History = ( { onHistoryClick } ) => {
     fetchConversations()
   })
 
-
-
   return (
       <div className='history-container'>
           <h1 className='logo'>Code Wizard</h1>
+          <button className='new-chat' onClick={onClick}>NEW CHAT</button>
           {conversations.map((convo, index) => (
               <HistoryBlock 
                 title={convo.title} 

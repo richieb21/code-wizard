@@ -11,7 +11,7 @@ const ChatStripe = ({isAi, value, color}) => {
     <div className={'wrapper ' + color}>
         <div className='chat'>
             <div className={'profile ' + color_tag} >
-                <img  src={isAi ? bot : user} alt={isAi ? "bot" : "user"}/>
+                <img src={isAi ? bot : user} alt={isAi ? "bot" : "user"}/>
             </div>
             <div className='message'><CodeBlock content={value}/></div>
         </div>
